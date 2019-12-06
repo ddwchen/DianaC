@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Neighborhood IQ</title>
-    <link rel="stylesheet" type="text/css" href="css/index_style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
     <div id="header"></div>
         <div class="top-menu"></div>
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Menu</button>
+                <div id="myDropdown" class="dropdown-content">
+                <a href="/search">Search</a>
+                <a href="/search">My Account</a>
+                <a href="/search">My Saves</a>
+                </div>
+            </div>
+        <div class="middle-menu"></div>
         <h1>Find Your Dream Neighborhood</h1>
+        <div class="search-bar"></div>
         <!-- search bar -->
     <div id="search-bar"></div>
     <div id="main"></div>
