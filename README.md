@@ -12,6 +12,8 @@ This website uses the following technologies:
   - Python
   - Flask
   - SQL Alchemy
+  - APIs
+  - Ajax
   - JavaScript
   - CSS
   - HTML
