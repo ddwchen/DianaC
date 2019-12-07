@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 from flask_migrate import Migrate
@@ -140,8 +140,35 @@ def edit(user_id):
 
     return redirect('/')
 
-# @app.route('/login')
-# def login():
+@app.route('/login', methods=['POST'])
+def login():
+    errors = []
+
+    user_attempt = User.query.filter_by(email=request.form["email"]).first()
+    
+    if not user_attempt:
+        flash("Your email and password combination is incorrect.")
+        return redirect("/")
+
+    if not bcrypt.check_password_hash(user_attempt.password, request.form["password"]):
+        flash("Your email and password combination is incorrect.")
+        return redirect("/")
+
+    session["user_id"] = user_attempt.id
+    return redirect('/saves')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
+
+@app.route('/saves')
+def saves():
+    if not "user_id" in session:
+        return redirect("/")
+    logged_in = User.query.get(session["user_id"])
+    all_saves = Business.query.all() 
+    return render_template("saves.html", user=logged_in, saves=all_saves)
 
 # @app.route('/search')
 # def search():
@@ -149,6 +176,13 @@ def edit(user_id):
 # @app.route('/details')
 # def details():
 
+@app.route('/saves/<user_id>')
+def add_save(business_id):
+    user = User.query.get(session["user_id"])
+    business = Business.query.get(business_id)
+    user.saves_sent.append(business)
+    db.session.commit()
+    return redirect('/saves')
 
 if __name__ == "__main__":
     app.run(debug=True)
