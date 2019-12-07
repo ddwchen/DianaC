@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
-    <div id="header"></div>
+    <div class="header"></div>
         <div class="top-menu"></div>
             <div class="dropdown">
                 <button onclick="myFunction()" class="dropbtn">Menu</button>
@@ -19,17 +19,20 @@
                 </div>
             </div>
         <div class="middle-menu"></div>
-        <h1>Find Your Dream Neighborhood</h1>
-        <div class="search-bar"></div>
-        <!-- search bar -->
-    <div id="search-bar"></div>
-    <div id="main"></div>
+            <h1>Find Your Dream Neighborhood</h1>
+        <div class="small-search"></div>
+            <input type="text" placeholder="City, State">
+    <hr>
+    <div class="search-bar"><input type="text" placeholder="City, State"></div>
+    <hr>
+    <div class="main"></div>
         <h1>Your home is more than just the building you live in.</h1>
         <h3>It's also your neighborhood: the restaurants, bars, and businesses near you.</h3>
         <div class="subcontent"></div>
         <div class="subcontent"></div>
         <div class="subcontent"></div>
         <div class="subcontent"></div>
-    <div id="footer"></div>
+    <hr>
+    <div class="footer"></div>
 </body>
 </html>
