@@ -7,44 +7,43 @@
     <title>Neighborhood IQ</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js')}} "></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/node.js')}} "></script>
 </head>
 <body>
     <div class="header">
-        <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Menu</button>
-            <div id="myDropdown" class="dropdown-content">
-            <a href="/search">Search</a>
-            <a href="/myaccount">My Account</a>
-            <a href="/search">My Saves</a>
-            </div>
-        </div>
-        <img src = "{{ url_for('static', filename='img/logo.png') }}">
-        <a id="login" class="btn btn-primary float-right" href="/login">Login</a> 
+        <img class="logo" src = "{{ url_for('static', filename='img/logo.png') }}">
+        <a id="login" class="links-header" href="/login">Login</a> | <a id="account" class="links-header" href="/saves">Dashboard</a>
         <br>
-        <h1>Find Your Dream Neighborhood</h1>
-        <div class = "search-bar"><input type="text" placeholder="City, State"></div>
+        <h1>Find Your <br>Dream Neighborhood:</h1>
+        <div class = "search-bar"><input type="text" placeholder="City, State">
+            <button id = "search-button" class = "search">Search</button>
+        </div>
+    </div>
     <div class="main">
         <br>    
+        <br>
         <h1>Your home is more than just 
             <br>the building you live in.</h1>
         <br>
         <h3>It's also your neighborhood: the restaurants, bars, and businesses near you.</h3>
         <br>
         <div class="subcontent">
-            <a href="/"><img src = "{{ url_for('static', filename='img/eat.png') }}" height="500" width="500"></a>
+            <a href="/"><img class="img-main" src = "{{ url_for('static', filename='img/eat.png') }}" height="500" width="500"></a>
         </div> 
         <div class="subcontent">
-            <a href="/"><img src = "{{ url_for('static', filename='img/drink.png') }}" height="500" width="500"></a>
+            <a href="/"><img class="img-main" src = "{{ url_for('static', filename='img/drink.png') }}" height="500" width="500"></a>
         </div>
         <div class="subcontent">
-            <a href="/"><img src = "{{ url_for('static', filename='img/shop.png') }}" height="500" width="500"></a>
+            <a href="/"><img class="img-main" src = "{{ url_for('static', filename='img/shop.png') }}" height="500" width="500"></a>
         </div>
         <div class="subcontent">
-            <a href="/"><img src = "{{ url_for('static', filename='img/pamper.png') }}" height="500" width="500"></a>
+            <a href="/"><img class="img-main" src = "{{ url_for('static', filename='img/pamper.png') }}" height="500" width="500"></a>
         </div>
+    </div>
     <div class="footer">
         <br>
-        <p>Copyright 2019 Diana D. Chen</p>
+        <p>Copyright 2019 Neighborhood IQ</p>
     </div>
 </body>
 </html>

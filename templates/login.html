@@ -19,19 +19,12 @@
         {% endif %}
         {% endwith %}
         <div class="header">
-            <div class="dropdown">
-                <button onclick="myFunction()" class="dropbtn">Menu</button>
-                <div id="myDropdown" class="dropdown-content">
-                <a href="/search">Search</a>
-                <a href="/myaccount">My Account</a>
-                <a href="/search">My Saves</a>
-            </div>
+            <a href="/"><img src = "{{ url_for('static', filename='img/logo.png') }}"></a>
+            <a id="home" class="btn btn-primary float-right" href="/">Home</a>
         </div>
-        <a href="/"><img src = "{{ url_for('static', filename='img/logo.png') }}"></a>
-        <a id="login" class="btn btn-primary float-right" href="/login">Login</a>
         <h1>Welcome!</h1>
         <section>
-            <h3>Create an Account</h3>
+            <h3>Create an Account:</h3>
             <form action="/new_user" method="post">
                 <div class="form-group">
                     <label for="first_name">First Name:</label>
@@ -58,7 +51,7 @@
         </section>
         <h1>- OR -</h1>
         <section>
-            <h3>Sign In</h3>
+            <h3>Sign In:</h3>
             <form action="/user/login" method="post">
                 <div class="form-group">
                     <label for="email">Email:</label>

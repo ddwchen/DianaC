@@ -18,8 +18,8 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 saves_table = db.Table('saves', 
-    db.Column('user_id', db.Integer, db.ForeignKey('users.id', ondelete="cascade"), primary_key=True), 
-    db.Column('business_id', db.Integer, db.ForeignKey('business.id', ondelete="cascade"), primary_key=True)
+    db.Column('business_id', db.Integer, db.ForeignKey('businesses.id', ondelete="cascade"), primary_key=True),
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id', ondelete="cascade"), primary_key=True)
 )
 
 class User(db.Model):	
@@ -42,8 +42,8 @@ class Business(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
     info = db.Column(db.Text)
-    users_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="cascade"), nullable=False) 
-    user = db.relationship("User", foreign_keys=[users_id], backref="users", cascade="all") 
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="cascade"), nullable=False)
+    user = db.relationship("User", foreign_keys=[user_id], backref="businesses")
     created_at = db.Column(db.DateTime, server_default=func.now())   
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
 
@@ -52,6 +52,7 @@ class Business(db.Model):
     @property
     def num_saves(self):
         return len(self.saves_rec)
+
 
 @app.route('/')
 def index():
@@ -102,6 +103,7 @@ def new_user():
             email = request.form["email"],
             password = hashed
         )
+        
         db.session.add(new_user)
         db.session.commit()
         session["user_id"] = new_user.id
@@ -160,7 +162,7 @@ def user_login():
         return redirect("/login")
 
     session["user_id"] = user_attempt.id
-    return redirect('/login')
+    return redirect('/saves')
 
 @app.route('/logout')
 def logout():

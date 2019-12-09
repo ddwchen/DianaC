@@ -1,0 +1,50 @@
+*{
+    margin: 10px 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.header{
+    width: auto;
+    background-color: white;
+    margin: 10px auto;
+}
+
+.logo {
+    vertical-align: top;
+    display: inline-block;
+    margin-left: 200px;
+    margin-right: auto;
+    padding-bottom: 20px;
+}
+
+#edit {
+    text-decoration: none;
+    background-color: white;
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: 150px;
+    color: black;
+}
+
+#logout {
+    text-decoration: none;
+    background-color: white;
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: 0px;
+    color: black;
+}
+
+#edit {
+    text-decoration: none;
+    background-color: white;
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: 0px;
+    color: black;
+}

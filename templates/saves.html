@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/saves.css') }}">
-    <title>Your Saves</title>
+    <title>My Saves</title>
 </head>
 <body>
-    <div class="savescontainer">
+    <div class="container">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
@@ -19,16 +19,14 @@
         {% endif %}
         {% endwith %}
         <header>
-            <h3>{{user.first_name}}'s Favorite Restaurants, Bars, and Businesses</h3>
-            <div class="links-saves">
-                <a id="edit" class="btn btn-primary float-right" href="/myaccount/{{ user.id }}">Edit My Account</a>
-                <a id="logout" class="btn btn-primary float-right" href="/logout">Logout</a>
-            </div>
+            <img class="logo" src = "{{ url_for('static', filename='img/logo.png') }}">
+            <a id="edit" class="links-header" href="/myaccount/{{ user.id }}">Account</a> | <a id="logout" class="links-header" href="/logout">Logout</a>
         </header>
+        <h3>{{user.first_name}}'s Favorite Restaurants, Bars, and Businesses</h3>
         <br>
         <div class="saves">
             <section class="boxes">
-                <h2>Saved Businesses</h2>
+                <h2>Saved Businesses:</h2>
                 {% for business in businesses %}
                     <section class="individ-save">
                         <p><strong>{{ business.info }}</strong></p>
