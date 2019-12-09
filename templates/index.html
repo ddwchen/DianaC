@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Neighborhood IQ</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js')}} "></script>
 </head>
 <body>
-    <div class="header"></div>
+    <div class="header">
         <div class="dropdown">
             <button onclick="myFunction()" class="dropbtn">Menu</button>
             <div id="myDropdown" class="dropdown-content">
@@ -18,22 +19,32 @@
             </div>
         </div>
         <img src = "{{ url_for('static', filename='img/logo.png') }}">
-        <a id="login" class="btn btn-primary float-right" href="/login">Login</a>
+        <a id="login" class="btn btn-primary float-right" href="/login">Login</a> 
         <br>
         <h1>Find Your Dream Neighborhood</h1>
         <div class = "search-bar"><input type="text" placeholder="City, State"></div>
-    <hr>
-    <div class="main"></div>
+    <div class="main">
         <br>    
-        <h1>Your home is more than just the building you live in.</h1>
+        <h1>Your home is more than just 
+            <br>the building you live in.</h1>
         <br>
         <h3>It's also your neighborhood: the restaurants, bars, and businesses near you.</h3>
         <br>
-        <div class="subcontent"></div>
-        <div class="subcontent"></div>
-        <div class="subcontent"></div>
-        <div class="subcontent"></div>
-    <hr>
-    <div class="footer"></div>
+        <div class="subcontent">
+            <a href="/"><img src = "{{ url_for('static', filename='img/eat.png') }}" height="500" width="500"></a>
+        </div> 
+        <div class="subcontent">
+            <a href="/"><img src = "{{ url_for('static', filename='img/drink.png') }}" height="500" width="500"></a>
+        </div>
+        <div class="subcontent">
+            <a href="/"><img src = "{{ url_for('static', filename='img/shop.png') }}" height="500" width="500"></a>
+        </div>
+        <div class="subcontent">
+            <a href="/"><img src = "{{ url_for('static', filename='img/pamper.png') }}" height="500" width="500"></a>
+        </div>
+    <div class="footer">
+        <br>
+        <p>Copyright 2019 Diana D. Chen</p>
+    </div>
 </body>
 </html>

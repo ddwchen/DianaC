@@ -1,0 +1,72 @@
+.container{
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.header{
+    width: 980px;
+    background-color: white;
+    margin: 10px auto;
+}
+
+    /* Dropdown Button */
+    .dropbtn {
+        background-color: white;
+        color: black;
+        font-size: 14px;
+        padding: 10px;
+        margin-right: auto;
+        border: none;
+        cursor: pointer;
+    }
+    
+    /* Dropdown button on hover & focus */
+    .dropbtn:hover, .dropbtn:focus {
+        background-color: #fff952;
+    }
+    
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 160px;
+    }
+    
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 10px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {background-color: yellow}
+    
+    /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+    .show {display:block;}
+
+    img{
+        vertical-align: top;
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+.form-group{
+    margin: 5px;
+}
+
+.btn {
+    font-size: 20px;
+    padding: 5px;
+    background-color: #fff952;
+}

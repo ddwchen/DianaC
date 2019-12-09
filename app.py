@@ -8,7 +8,7 @@ import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quote_dash.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///neighborhood_iq.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = "QaWsEdRfTgYh12345!!"
 
@@ -40,9 +40,10 @@ class User(db.Model):
 class Business(db.Model):
     __tablename__ = "businesses"
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text)
-    author_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="cascade"), nullable=False) 
-    author = db.relationship('User', foreign_keys=[author_id], backref="posts") 
+    name = db.Column(db.String(255))
+    info = db.Column(db.Text)
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="cascade"), nullable=False) 
+    user = db.relationship("User", foreign_keys=[users_id], backref="users", cascade="all") 
     created_at = db.Column(db.DateTime, server_default=func.now())   
     updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
 
@@ -56,8 +57,12 @@ class Business(db.Model):
 def index():
     return render_template("index.html")
 
-@app.route('/new_user')
-def create():
+@app.route('/login')
+def login():
+    return render_template("login.html")
+
+@app.route('/new_user', methods=['POST'])
+def new_user():
     errors = []
 
     if len(request.form['first_name']) < 2:
@@ -100,9 +105,9 @@ def create():
         db.session.add(new_user)
         db.session.commit()
         session["user_id"] = new_user.id
-        return redirect('/search')
+        return redirect('/saves')
 
-    return redirect("/")
+    return redirect('/login')
 
 @app.route('/myaccount/<user_id>')
 def show(user_id):
@@ -140,22 +145,22 @@ def edit(user_id):
 
     return redirect('/')
 
-@app.route('/login', methods=['POST'])
-def login():
+@app.route('/user/login', methods=['POST'])
+def user_login():
     errors = []
 
     user_attempt = User.query.filter_by(email=request.form["email"]).first()
     
     if not user_attempt:
         flash("Your email and password combination is incorrect.")
-        return redirect("/")
+        return redirect("/login")
 
     if not bcrypt.check_password_hash(user_attempt.password, request.form["password"]):
         flash("Your email and password combination is incorrect.")
-        return redirect("/")
+        return redirect("/login")
 
     session["user_id"] = user_attempt.id
-    return redirect('/saves')
+    return redirect('/login')
 
 @app.route('/logout')
 def logout():
@@ -169,9 +174,6 @@ def saves():
     logged_in = User.query.get(session["user_id"])
     all_saves = Business.query.all() 
     return render_template("saves.html", user=logged_in, saves=all_saves)
-
-# @app.route('/search')
-# def search():
 
 # @app.route('/details')
 # def details():

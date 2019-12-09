@@ -1,12 +1,12 @@
 *{
-    margin: 10px;
+    margin: 10px 0px;
     padding: 0px;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
 .header{
-    width: 980px;
+    width: auto;
     background-color: white;
     margin: 10px auto;
 }
@@ -17,7 +17,7 @@
         color: black;
         font-size: 14px;
         padding: 10px;
-        margin-right: 200px;
+        margin-right: auto;
         border: none;
         cursor: pointer;
     }
@@ -50,7 +50,7 @@
     }
     
     /* Change color of dropdown links on hover */
-    .dropdown-content a:hover {background-color: yellow}
+    .dropdown-content a:hover {background-color: #fff952}
     
     /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
     .show {display:block;}
@@ -62,10 +62,6 @@
         margin-right: auto;
     }
 
-    #login {
-        margin-left: 200px;
-    }
-
     .search-bar input[type=text] {
         width: 800px;
         padding: 6px;
@@ -75,17 +71,18 @@
         }
 
 .main {
-    background-color: #fff952;
+    background-color: rgb(241, 241, 241);
+    width: 100%;
 }
 
 .subcontent{
     width: 500px;
-    height: 350px;
-    border: 1px solid black;
+    height: 500px;
     display: inline-block;
     margin: 20px 20px;
 }
 
 .footer{
-    border: 2px solid black;
+    width: 100%;
+    background-color: white;
 }
