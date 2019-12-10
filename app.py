@@ -1,11 +1,39 @@
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash, json
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
+import requests
 import re
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+
+def call_api():
+    # Define a business/client ID:
+    business_id = '8tMah5HILxg9YxYxethMRA'
+
+    # Define the API Key, the Endpoint, and the Header
+    API_KEY = 'LgkLMq2f5gKCZlP2EBDCrJQrq3umsuPZ4zoUgcDUFuHYTc57rvoiGFpxccAL7W8vTXNSO39bzlgUvn-2b2845lFtvCb4Wgny9nHv1LPMs75G9aHYKHrOjR3DMt_uXXYx'
+    ENDPOINT = 'https://api.yelp.com/v3/businesses/search?location=chicago,il'
+    HEADERS = {'Authorization': 'bearer %s' % API_KEY}
+
+    # Define the parameters
+    PARAMETERS = {'term': 'beer',
+                    'limit': 50,
+                    'radius': 10000,
+                    'location': 'Chicago'}
+
+    # Make a request to the Yelp API
+    response = requests.get(url = ENDPOINT, params = PARAMETERS, headers = HEADERS)
+
+    # Convert the JSON string to a Dictionary
+    business_data = response.json()
+
+    print(business_data.keys())
+    print(business_data)
+
+    # for biz in business_data['businesses']:
+    #     print(biz['name'])
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///neighborhood_iq.db'
@@ -56,6 +84,7 @@ class Business(db.Model):
 
 @app.route('/')
 def index():
+    call_api()
     return render_template("index.html")
 
 @app.route('/login')
